@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Make Fabble</title>
+        <style>
+        </style>
+        <script src="js/snap.svg-min.js"></script>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script>
+            var objects = {};
+            $(document).ready(function () {
+            });
+        </script>
+    </head>
+    <body>
+
+        <script>
+            function getCharacter() {
+                return String.fromCharCode(65+Math.floor((Math.random()*26)));
+            }
+
+            var width = 320;
+            var height = 320;
+            var cols = 4;
+            var rows = 4;
+            var s = Snap("14in","12in");
+            Snap.load("tiles.svg", function (f) {
+                      var g = f.select("g");
+                      s.append(g);
+                      for ( i=0; i<cols; i++) {
+                         for ( j=0; j<rows; j++) {
+                            if (i || j ) {   // skip the first cell
+                               var h = g.clone();
+                               var x = i*width+10;
+                               var y = j*height+30;
+                               var tstr = "translate("+x+","+y+")";
+                               h.transform(tstr);
+
+                               $( "tspan" ).each(function( index ) {
+                                     $(this).text(getCharacter());
+                                 });
+                            }
+                         }
+                      }
+                  });
+        </script>
+    </body>
+</html>
