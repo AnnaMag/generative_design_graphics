@@ -32,13 +32,20 @@
 
             var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. \
             I will meet you there. When the soul lies down in that grass the world is too full to talk about");
-            var re = /.//;
-            var text = text_oryg.replace(re);
-            console.log(text);
+            var text_oryg = new String("aoaaaaaaoaaoaoa");
+            var text_t = text_oryg.replace(/\./g, "");
+            var text = text_t.replace(/\s/g, "");
+
             function charCount(str) {
               return _(str.split('')).countBy(function(char) {
                 //console.log(char);
                 return char.toLowerCase();
+              });
+            }
+
+            function wordCount(str) {
+              return _(str.split(' ')).countBy(function(char) {
+                return char.replace(/\./g, "").toLowerCase();
               });
             }
 
@@ -49,6 +56,7 @@
                 for(var s = 0, i = o.length; i; s += o[--i]);
                 return s;
             };
+
             var s = charCount(text);
             var weights = [];
             var letters = [];
@@ -60,8 +68,7 @@
             var w_sum = sum(weights);
             var weighted_prob = weights.map(function(x){return x / w_sum});
 
-            for (var i = 0; i < 10; i++) {
-
+            for (var i = 0; i < 1; i++) {
               console.log(getRandom (weighted_prob, letters));
             }
             var width = 320;
@@ -82,7 +89,8 @@
                                h.transform(tstr);
 
                                $( "tspan" ).each(function( index ) {
-                                     $(this).text(getCharacter());
+                                     //$(this).text(getCharacter());
+                                     $(this).text(getRandom (weighted_prob, letters));
                                  });
                             }
                          }
