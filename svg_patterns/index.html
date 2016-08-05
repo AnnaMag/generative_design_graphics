@@ -7,6 +7,7 @@
         </style>
         <script src="js/snap.svg-min.js"></script>
         <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/underscore-min.js"></script>
         <script>
             var objects = {};
             $(document).ready(function () {
@@ -14,12 +15,55 @@
         </script>
     </head>
     <body>
-
         <script>
+
+            function getRandom (weights, values) {
+                var num = Math.random(),
+                    s = 0,
+                    lastIndex = weights.length - 1;
+                for (var i = 0; i < lastIndex; ++i) {
+                    s += weights[i];
+                    if (num < s) {
+                        return values[i];
+                    }
+                  }
+            return values[lastIndex];
+            };
+
+            var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. \
+            I will meet you there. When the soul lies down in that grass the world is too full to talk about");
+            var re = /.//;
+            var text = text_oryg.replace(re);
+            console.log(text);
+            function charCount(str) {
+              return _(str.split('')).countBy(function(char) {
+                //console.log(char);
+                return char.toLowerCase();
+              });
+            }
+
             function getCharacter() {
                 return String.fromCharCode(65+Math.floor((Math.random()*26)));
             }
+            function sum(o){
+                for(var s = 0, i = o.length; i; s += o[--i]);
+                return s;
+            };
+            var s = charCount(text);
+            var weights = [];
+            var letters = [];
 
+            for (var key in s) {
+              weights.push(s[key]);
+              letters.push(key);
+            }
+            var w_sum = sum(weights);
+            var weighted_prob = weights.map(function(x){return x / w_sum});
+
+            for (var i = 0; i < 10; i++) {
+
+              console.log(getRandom (weighted_prob, letters));
+            }
             var width = 320;
             var height = 320;
             var cols = 4;
