@@ -1,3 +1,5 @@
+//import underscore from 'underscore';
+var _ = require('underscore');
 //"use strict";
 module.exports = {
 

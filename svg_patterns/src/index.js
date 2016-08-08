@@ -1,8 +1,8 @@
-//console.log(__dirname + 'ls');
-import jquery from 'jquery';
-import underscore from 'underscore';
-import Snap from 'snapsvg';
-
+//import jquery from 'jquery';
+var $ = require('jquery');
+//import underscore from 'underscore';
+//import Snap from 'snapsvg';
+import Snap from 'snapsvg';//'imports-loader?this=>window,fix=>module.exports=0!snap.svg.js';
 var fun = require('./helpers.js');
 
 var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. I will meet you there. When the soul lies down in that grass the world is too full to talk about");
@@ -29,9 +29,14 @@ var height = 320;
 var cols = 4;
 var rows = 4;
 var s = Snap("14in","14in");
-Snap.load("tiles.svg", function (f) {
+
+console.log(s);
+console.log(__dirname);
+
+Snap.load("../img/tiles.svg", function (f) {
           var g = f.select("g");
           s.append(g);
+          console.log(g);
           for ( i=0; i<cols; i++) {
              for ( j=0; j<rows; j++) {
                 if (i || j ) {   // skip the first cell
