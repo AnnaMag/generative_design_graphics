@@ -1,14 +1,17 @@
 //console.log(__dirname + 'ls');
-var { Snap } = require('./snap.svg.js');
-require('./jquery-1.10.2.min.js');
-require('./underscore-min.js');
-
+import jquery from 'jquery'
+import underscore from 'underscore'
 var fun = require('./helpers.js');
+
+var SnapLib = require( "imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js" );
+var Snap = SnapLib.Snap;
+var sload = Snap.load;
+
+window.Snap = Snap; // transform REQUIRES Snap on the window because it uses eval
 
 var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. I will meet you there. When the soul lies down in that grass the world is too full to talk about");
 var text_t = text_oryg.replace(/\./g, "");
 var text = text_t.replace(/\s/g, "");
-
 
 var s = fun.charCount(text);
 //var s = wordCount(text_t);
@@ -20,7 +23,7 @@ for (var key in s) {
   weights.push(s[key]);
   letters.push(key);
 }
-var w_sum = fun.sum(weights);
+var w_sum = fun. sum(weights);
 var weighted_prob = weights.map(function(x){return x / w_sum});
 
 //'SourceSansPro-Regular.otf'
@@ -30,7 +33,7 @@ var height = 320;
 var cols = 4;
 var rows = 4;
 var s = Snap("14in","14in");
-Snap.load("tiles.svg", function (f) {
+sload("tiles.svg", function (f) {
           var g = f.select("g");
           s.append(g);
           for ( i=0; i<cols; i++) {
