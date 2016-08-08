@@ -1,5 +1,5 @@
 //console.log(__dirname + 'ls');
-require('./snap.svg-min.js');
+var { Snap } = require('./snap.svg.js');
 require('./jquery-1.10.2.min.js');
 require('./underscore-min.js');
 
@@ -20,7 +20,7 @@ for (var key in s) {
   weights.push(s[key]);
   letters.push(key);
 }
-var w_sum = sum(weights);
+var w_sum = fun.sum(weights);
 var weighted_prob = weights.map(function(x){return x / w_sum});
 
 //'SourceSansPro-Regular.otf'
