@@ -5,13 +5,6 @@ import Snap from 'snapsvg';
 
 var fun = require('./helpers.js');
 
-//var SnapLib = require( "imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js" );
-//var SnapLib = require( 'snapsvg' );
-//var Snap = SnapLib.Snap;
-//var sload = Snap.load;
-
-//window.Snap = Snap; // transform REQUIRES Snap on the window because it uses eval
-
 var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. I will meet you there. When the soul lies down in that grass the world is too full to talk about");
 var text_t = text_oryg.replace(/\./g, "");
 var text = text_t.replace(/\s/g, "");
