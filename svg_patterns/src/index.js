@@ -1,13 +1,16 @@
 //console.log(__dirname + 'ls');
-import jquery from 'jquery'
-import underscore from 'underscore'
+import jquery from 'jquery';
+import underscore from 'underscore';
+import Snap from 'snapsvg';
+
 var fun = require('./helpers.js');
 
-var SnapLib = require( "imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js" );
-var Snap = SnapLib.Snap;
-var sload = Snap.load;
+//var SnapLib = require( "imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js" );
+//var SnapLib = require( 'snapsvg' );
+//var Snap = SnapLib.Snap;
+//var sload = Snap.load;
 
-window.Snap = Snap; // transform REQUIRES Snap on the window because it uses eval
+//window.Snap = Snap; // transform REQUIRES Snap on the window because it uses eval
 
 var text_oryg = new String("Out beyond ideas of wrongdoing and rightdoing there is a field. I will meet you there. When the soul lies down in that grass the world is too full to talk about");
 var text_t = text_oryg.replace(/\./g, "");
@@ -33,7 +36,7 @@ var height = 320;
 var cols = 4;
 var rows = 4;
 var s = Snap("14in","14in");
-sload("tiles.svg", function (f) {
+Snap.load("tiles.svg", function (f) {
           var g = f.select("g");
           s.append(g);
           for ( i=0; i<cols; i++) {

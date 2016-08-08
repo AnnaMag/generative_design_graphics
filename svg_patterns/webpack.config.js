@@ -15,6 +15,10 @@ module.exports = {
         include: __dirname + "/src/",
         loader: "babel-loader"
       },
+      {
+         test: require.resolve('snapsvg'),
+         loader: 'imports-loader?this=>window,fix=>module.exports=0'
+       }
     ]
   }
 }
